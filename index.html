@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang=en>
+     <head>
+        <title>
+            Bracket
+        </title>
+        <meta charset="utf-8">
+      
+
+        
+        <link rel ="stylesheet" href="style.css">
+        <script crossorigin src="react.js"></script>
+        <script crossorigin src="react-dom.js"></script>
+        <script  src="script.js"></script>
+    </head>
+
+    <body>
+    
+            <form class="form" id="form1">
+                <div><label for="f_name">Name:</label><input id="f_name" type="text"></div>
+                <div><label for="f_hname">Hosted By:</label><input id="f_hname" type="text"></div>
+                <div><label for="f_bo_name">BO:</label><input id="f_bo_name" type="number" min="1" value=1></div>
+                <div><label for="f_gname">Game name:</label><input id="f_gname" type="text"></div>
+                <div class="f_empty">
+                    <label for="f_empty">Empty</label><input id="f_empty" type="checkbox">
+                    <div class="f_teams">
+                        <label>Teams:</label>
+                        <div>
+                            <ul class="ul">
+                                <li>one per line</li> 
+                                <li>ordered by seed,best to worst</li>                    
+                                                            
+                            </ul>
+                            <textarea id="textarea" rows="5"></textarea>
+                        </div>
+                    </div>
+                    <div class="f_count">
+                        <label>Number of teams:</label><input id="f_number" type="number" min="2" value="2" >
+                    </div>
+                </div>
+               <button type="submit">Start tourn</button>
+            </form>
+            <script>
+                var x ;
+            (function()
+            {
+                let form = document.getElementById("form1");
+                form.onsubmit = function()
+                {
+                    let options ={};
+                    options.name = document.getElementById("f_name").value;
+                
+                    options.org = document.getElementById("f_hname").value;
+                    options.game = document.getElementById("f_gname").value;
+                    options.games_for_win = parseInt(document.getElementById("f_bo_name").value);
+                    
+                    if (document.getElementById("f_empty").checked)
+                    {   
+                        options.empty = true;
+                        options.count = document.getElementById("f_number").value;
+                    }
+                    else
+                    {
+                        options.empty = false;
+                        options.teams = [];
+                        let names_array = document.getElementById("textarea").value.split("\n");
+                        if (names_array.length <2)
+                        {
+                            alert("Can't be less than 2 teams")
+                            return false;
+                        }
+                        for (var i=0;i<names_array.length;i++)
+                        {
+                            options.teams[i] = {name:names_array[i]};
+                        }
+                        
+                    }   
+                    form.style.display ="none";
+                    x = Tourn.CreateTourn(options); 
+                    return false
+                };
+
+            })();
+            </script>
+        <div id="render"></div>
+        
+        
+    </body>
+</html>

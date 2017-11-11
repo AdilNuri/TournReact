@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+    <head>
+        
+    </head>
+    <style>
+        .outer{
+            position:relative;
+        }
+        .outer .menu{
+            position: absolute;
+            display:none;
+        }
+        .button{
+            padding: 5px;
+        }
+        .outer:hover .menu{
+            display:block;
+        }
+    </style>
+    <body>
+        <div class="outer">
+          
+                <form>
+                        <label>Name:<input type="text"></label><br>
+                        <label>Hosted By:<input type="text"></label><br>
+                        <label>BO:<input type="numeric"></label><br>
+                        <label>Empty:<input type="checkbox"></label><br>
+                        <label>Teams:
+                            <ul>
+                                <li>one per line</li> 
+                                <li>oredered by seed,best to worst</li>
+                            </ul>
+                        </label>
+                        <label><textarea rows="10"></textarea></label>
+                    </form>
+        
+    </body>
+</html>
